@@ -3,5 +3,5 @@
 using namespace std;
 
 int main () {
-	cout<<"Benvigut a FOPR"<<endl;
+    cout<<"Benvigut a FOPR"<<endl;
 }
