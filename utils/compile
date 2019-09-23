@@ -1,0 +1,6 @@
+#!/bin/bash
+
+INPUTFILE=$1
+
+g++ -Wall -ansi -o $(echo "${INPUTFILE%%.*}".e) $INPUTFILE
+
