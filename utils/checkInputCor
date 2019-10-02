@@ -1,14 +1,20 @@
 #!/bin/bash
 
+if [ $# -ne 3 ]
+then
+    echo "Usage: $0  <PROGRAM> <INPUT EXTENSION> <OUTPUT EXTENSION>"
+    exit 1
+fi
+
 PROGRAM=$1
-NAME=$2
-EXT=$3
+EXTINP=$2
+EXTCHECK=$3
 
 
-for file in $(ls ./ | grep $NAME | grep $EXT)
+for file in $(ls ./ |  grep $EXTINP)
 do
     cat $file | ./$PROGRAM > /tmp/out
-    diff -q /tmp/out $(echo "${file%%.*}".cor) &>/dev/null
+    diff -q /tmp/out $(echo "${file%%.*}".$EXTCHECK) &>/dev/null
     if [ $? -eq 0 ]
     then
         echo "OK $file"
@@ -16,7 +22,7 @@ do
         echo "FAIL $file"
 	echo "############"
 	echo "Expected: "
-        cat $(echo "${file%%.*}".cor)
+        cat $(echo "${file%%.*}".$EXTCHECK)
 	echo "------------------"
 	echo "Result: "
         cat /tmp/out

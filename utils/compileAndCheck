@@ -1,12 +1,11 @@
 #!/bin/bash
 
-INPUTFILE=$1
-
 if [ $# -ne 1 ]
 then
     echo "Usage: $0  <PROGRAM>"
     exit 1
 fi
+FILE=$1
 
-g++ -Wall -ansi -o $(echo "${INPUTFILE%%.*}".e) $INPUTFILE
-
+compile $FILE
+checkInputCor $(echo "${FILE%%.*}".e) inp cor
