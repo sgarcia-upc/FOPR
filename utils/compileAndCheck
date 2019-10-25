@@ -8,4 +8,7 @@ fi
 FILE=$1
 
 compile $FILE
-checkInputCor $(echo "${FILE%%.*}".e) inp cor
+if [ $? -eq 0 ]
+then
+    checkInputCor $(echo "${FILE%%.*}".e) inp cor
+fi
